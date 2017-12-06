@@ -10,7 +10,7 @@ package sort;
  */
 public class ManyKeySort {
 
-    class Card implements Comparable {
+    static class Card implements Comparable {
         private int pokerColors;
         private int cardPoints;
 
@@ -48,7 +48,7 @@ public class ManyKeySort {
      * 冒泡排序
      * @param array
      */
-    private void bubbleSort(Card[] array){
+    private static void bubbleSort(Card[] array){
         for (int i = array.length - 1; i >= 0; i--) {
             boolean flag = true;
             for (int j = 0; j < i; j++) {
@@ -63,5 +63,20 @@ public class ManyKeySort {
                 break;
             }
         }
+        for (Card card : array) {
+            System.out.println(card.toString());
+        }
+    }
+
+    public static void main(String[] args){
+        Card[] array = new Card[]{
+                new Card(3,9),
+                new Card(2,9),
+                new Card(4,2),
+                new Card(4,3),
+                new Card(1,3),
+                new Card(3,3)
+        };
+        bubbleSort(array);
     }
 }
