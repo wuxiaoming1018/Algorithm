@@ -7,6 +7,8 @@ package recursive;
 
 /**
  * 为2^n名选手设置赛程表
+ * 每名选手与其他选手都要进行比赛且只比赛一场
+ * 每名选手每天只有一场比赛
  */
 public class Program {
 
@@ -33,7 +35,7 @@ public class Program {
      * @return
      */
     public int[][] table(int k){
-        int n = 1<<k;
+        int n = 1<<k;//2的k次方
         int[][] array = new int[n][n];
         for (int i = 0; i < n; i++) {
             array[0][i] = i+1;
