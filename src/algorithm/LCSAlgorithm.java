@@ -8,8 +8,16 @@ import java.util.Stack;
  * @author wuxiaoming
  * @date 2017-12-12 9:29
  */
+
+/**
+ * 动态规划,求最长公共子串LCS算法
+ * 相等:取左上值+1
+ * 不相等:取左、上两个的较大值
+ */
 public class LCSAlgorithm {
+
     private boolean isOk = false;
+
     private void getLCS(String x, String y) {
         char[] charX = x.toCharArray();
         char[] charY = y.toCharArray();
@@ -41,26 +49,26 @@ public class LCSAlgorithm {
 
     private void answer(String x, String y, char[] charX, char[] charY, int[][] result) {
         Stack stack = new Stack();
-        int i = x.length()-1;
-        int j = y.length()-1;
-        while ((i>=0)&&(j>=0)){
-            if (charX[i]==charY[j]) {
+        int i = x.length() - 1;
+        int j = y.length() - 1;
+        while ((i >= 0) && (j >= 0)) {
+            if (charX[i] == charY[j]) {
                 //相等就入栈
                 stack.push(charX[i]);
                 i--;
                 j--;
-            }else{
-                if(result[i+1][j-1+1]>result[i-1+1][j+1]){
+            } else {
+                if (result[i + 1][j - 1 + 1] > result[i - 1 + 1][j + 1]) {
                     //上>左,往上走
                     j--;
-                }else if(result[i+1][j-1+1]<result[i-1+1][j+1]) {
+                } else if (result[i + 1][j - 1 + 1] < result[i - 1 + 1][j + 1]) {
                     //左>上,往左走
                     i--;
-                }else{
+                } else {
                     if (!isOk) {
                         i--;
                         isOk = true;
-                    }else{
+                    } else {
                         j--;
                     }
                 }
@@ -68,7 +76,7 @@ public class LCSAlgorithm {
         }
         System.out.println("\n-------------------------");
         while (!stack.isEmpty()) {
-            System.out.print(stack.pop()+"");
+            System.out.print(stack.pop() + "");
         }
     }
 
@@ -76,11 +84,11 @@ public class LCSAlgorithm {
         return i > j ? i : j;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         LCSAlgorithm lcs = new LCSAlgorithm();
-        lcs.getLCS("ABCBDAB","BDCABA");
+        lcs.getLCS("ABCBDAB", "BDCABA");
         if (lcs.isOk) {
-            lcs.getLCS("ABCBDAB","BDCABA");
+            lcs.getLCS("ABCBDAB", "BDCABA");
         }
     }
 }
